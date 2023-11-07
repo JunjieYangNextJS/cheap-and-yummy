@@ -15,30 +15,16 @@ export default function DollarTabs() {
         <div className="space-between flex items-center">
           <TabsList>
             <TabsTrigger value="$" className="relative">
-              $
+              <div onClick={() => setPrice(1)}>$</div>
             </TabsTrigger>
-            <TabsTrigger value="$$">$$</TabsTrigger>
+            <TabsTrigger value="$$">
+              <div onClick={() => setPrice(2)}>$$</div>
+            </TabsTrigger>
           </TabsList>
         </div>
         <OneDollarSign price={price} />
 
-        <TabsContent
-          value="$$"
-          className="h-full flex-col border-none p-0 data-[state=active]:flex"
-        >
-          <div className="flex items-center justify-between">
-            <div className="space-y-1">
-              <h2 className="text-2xl font-semibold tracking-tight">
-                Moderately expensive
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                Food or drinks usually cost between $10-$25.
-              </p>
-            </div>
-          </div>
-          <Separator className="my-4" />
-          <TwoDollarSigns price={price} />
-        </TabsContent>
+        <TwoDollarSigns price={price} />
       </Tabs>
     </div>
   );
