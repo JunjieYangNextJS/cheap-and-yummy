@@ -8,7 +8,6 @@ import { TwoDollarSigns } from "./two-dollar-signs";
 
 export default function DollarTabs() {
   const [price, setPrice] = useState(1);
-  console.log(price, "price");
 
   return (
     <div className="h-full px-4 py-6 lg:px-8">

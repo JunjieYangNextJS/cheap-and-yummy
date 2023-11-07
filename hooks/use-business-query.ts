@@ -8,7 +8,7 @@ const useBusinessQuery = (price = 1, radius = 16093, latitude = 30.267153, longi
             method: 'GET',
             headers: {
               accept: 'application/json',
-              Authorization: 'Bearer 1Sfh6T-4OK8LJjSy48UzCMhGbf_ovyZ2KZsMw-S9mmntx7WzhzB38wGmcdQocBk6WojyVK7lKfLkRqdR8OClh0xE892t0A6Ipc1KERnHEzp85B0BN0pdFBLi7VNBZXYx'
+              Authorization: `Bearer ${process.env.API_KEY}`
             }
           };
           
