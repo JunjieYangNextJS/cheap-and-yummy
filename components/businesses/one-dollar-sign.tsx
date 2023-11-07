@@ -2,9 +2,22 @@
 
 import useBusinessQuery from "@/hooks/use-business-query";
 import DollarSign from "./dollar-sign";
+import { useMapStore } from "@/hooks/use-map-store";
+import { useMilesStore } from "@/hooks/use-miles-store";
 
 export function OneDollarSign({ price }: { price: number }) {
-  const { isPending, isError, data: restaurants, error } = useBusinessQuery();
+  const lat = useMapStore((state) => state.lat);
+  const lng = useMapStore((state) => state.lng);
+  const radius = useMilesStore((state) => state.radius);
+
+  console.log("lat:", lat, "lng:", lng);
+
+  const {
+    isPending,
+    isError,
+    data: restaurants,
+    error,
+  } = useBusinessQuery(price, radius, lat, lng);
 
   // const restaurants: Business[] = await fetch(
   //   "http://localhost:3030/businesses",

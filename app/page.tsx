@@ -3,6 +3,8 @@ import { Sidebar } from "@/components/businesses/sidebar";
 import { playlists } from "@/data/playlists";
 import { Header } from "@/components/businesses/header";
 import DollarTabs from "@/components/businesses/dollar-tabs";
+import GoogleMapComponent from "@/components/google-map/google-map";
+import MainContent from "@/components/businesses/main-content";
 
 export const metadata: Metadata = {
   title: "Music App",
@@ -20,9 +22,7 @@ export default function Home() {
           <div className="bg-background">
             <div className="grid lg:grid-cols-5">
               <Sidebar playlists={playlists} className="hidden lg:block" />
-              <div className="col-span-3 lg:col-span-4 lg:border-l">
-                <DollarTabs />
-              </div>
+              <MainContent />
             </div>
           </div>
         </div>

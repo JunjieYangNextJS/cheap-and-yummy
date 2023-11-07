@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -8,6 +9,7 @@ import { Playlist } from "@/data/playlists";
 import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
 import { useMilesStore, milesType } from "@/hooks/use-miles-store";
+import { useMapStore } from "@/hooks/use-map-store";
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   playlists: Playlist[];
@@ -18,17 +20,26 @@ export function Sidebar({ className, playlists }: SidebarProps) {
 
   const changeRadius = useMilesStore((state) => state.changeRadius);
 
+  const changeMapOpen = useMapStore((state) => state.onToggle);
+
+  const isOpen = useMapStore((state) => state.isOpen);
+
   return (
     <div className={cn("pb-12", className)}>
       <div className="space-y-4 py-4">
-        {/* <div className="px-3 py-2">
+        <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             <div className="flex items-center space-x-2">
-              <Switch id="open-now" className="bg-orange-400" />
-              <Label htmlFor="open-now">Open Now</Label>
+              <Switch
+                onClick={changeMapOpen}
+                checked={isOpen}
+                id="open-now"
+                className="bg-orange-400"
+              />
+              <Label htmlFor="open-now">Open Map</Label>
             </div>
           </h2>
-        </div> */}
+        </div>
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             Distance

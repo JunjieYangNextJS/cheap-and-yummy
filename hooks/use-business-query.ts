@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-const useBusinessQuery = (price = 1, radius = 16093, latitude = 30.267153, longitude = -97.743057) => {
+const useBusinessQuery = (price: number, radius: number, latitude: number, longitude: number) => {
     let limit = 20;
 
     const getBusiness = async () => {
