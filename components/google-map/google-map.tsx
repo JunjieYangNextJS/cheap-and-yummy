@@ -20,7 +20,6 @@ const GoogleMapComponent = () => {
   });
   const [currentLocation, setCurrentLocation] = useState(null);
   const autocompleteRef = useRef(null);
-  const [address, setAddress] = useState("");
 
   console.log(selectedPlace, "selectedPlace here");
 
@@ -97,12 +96,6 @@ const GoogleMapComponent = () => {
     controlUI.addEventListener("click", handleGetLocationClick);
     controlDiv.appendChild(controlUI);
 
-    // const centerControl = new window.google.maps.ControlPosition(
-    //   window.google.maps.ControlPosition.TOP_CENTER,
-    //   0,
-    //   10
-    // );
-
     map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(
       controlDiv
     );
@@ -118,7 +111,6 @@ const GoogleMapComponent = () => {
         gap: "15px",
         marginTop: "15px",
       }}
-      // className="flex flex-col justify-center items-center gap-[20px] h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
     >
       {/* search component  */}
       <Autocomplete

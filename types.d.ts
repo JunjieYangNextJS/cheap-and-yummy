@@ -2,10 +2,10 @@
 
 type Business = {
     
-        id?: string,
-        alias?: string,
-        name?: string,
-        image_url?: string,
+        id: string,
+        alias: string,
+        name: string,
+        image_url: string,
         is_closed?: boolean,
         url?: string,
         review_count?: number,
@@ -13,14 +13,14 @@ type Business = {
             alias: string,
             title: string
         }[],
-        rating?: number,
+        rating: number,
         coordinates?: {
           latitude: string,
           longitude: string
         },
-        transactions?: string[],
+        transactions: string[],
         price?: "$" | "$$",
-        location?: {
+        location: {
           address1: string,
           address2: string,
           address3: string,
@@ -32,6 +32,7 @@ type Business = {
         },
         phone?: string,
         display_phone?: string,
-        distance?: number
+        distance?: number,
+        
       
 }

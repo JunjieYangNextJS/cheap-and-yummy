@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Playlist } from "@/data/playlists";
+
 import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
 import {
@@ -13,12 +12,9 @@ import {
   findKeyByValue,
 } from "@/hooks/use-miles-store";
 import { useMapStore } from "@/hooks/use-map-store";
+import { useOpenNowStore } from "@/hooks/use-openNow-store";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
-  playlists: Playlist[];
-}
-
-export function Sidebar({ className, playlists }: SidebarProps) {
+export function Sidebar({ className }: React.HTMLAttributes<HTMLDivElement>) {
   const miles: milesType[] = ["5", "10", "15", "20", "25"];
 
   const radius = useMilesStore((state) => state.radius);
@@ -27,8 +23,11 @@ export function Sidebar({ className, playlists }: SidebarProps) {
 
   const changeMapOpen = useMapStore((state) => state.onToggle);
 
+  const changeOpenNow = useOpenNowStore((state) => state.toggleIsOpenNow);
+
   const isOpen = useMapStore((state) => state.isOpen);
   const locationName = useMapStore((state) => state.locationName);
+  const isOpenNow = useOpenNowStore((state) => state.isOpenNow);
 
   const handleClickMap = () => {
     changeMapOpen();
@@ -48,7 +47,7 @@ export function Sidebar({ className, playlists }: SidebarProps) {
 
   return (
     <div className={cn("pb-12 ", className)}>
-      <div className="space-y-10 py-16 sticky top-0">
+      <div className="space-y-10 py-14 sticky top-0">
         <div className="px-3 py-2">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             <div className="flex flex-col gap-2">
@@ -68,7 +67,16 @@ export function Sidebar({ className, playlists }: SidebarProps) {
                   id="open-now"
                   className="bg-orange-400"
                 />
-                <Label htmlFor="open-now">Open Map</Label>
+                <Label htmlFor="open-now">Map</Label>
+              </div>
+              <div className="flex items-center space-x-2 mt-14">
+                <Switch
+                  onClick={changeOpenNow}
+                  checked={isOpenNow}
+                  id="open-now"
+                  className="bg-orange-400"
+                />
+                <Label htmlFor="open-now">Now Open</Label>
               </div>
             </div>
           </h2>
@@ -91,26 +99,8 @@ export function Sidebar({ className, playlists }: SidebarProps) {
                 {item} miles
               </Button>
             ))}
-
-            {/* <Button variant="ghost" className="w-full justify-start">
-              10 miles
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              15 miles
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              20 miles
-            </Button>
-            <Button variant="ghost" className="w-full justify-start">
-              25 miles
-            </Button> */}
           </div>
         </div>
-        {/* <div className="py-2">
-          <h2 className="relative px-7 text-lg font-semibold tracking-tight">
-            Playlists
-          </h2>
-        </div> */}
       </div>
     </div>
   );

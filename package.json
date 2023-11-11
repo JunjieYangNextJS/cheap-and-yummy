@@ -6,8 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "json-server": "json-server --watch db.json --port 3030"
+    "lint": "next lint"
   },
   "dependencies": {
     "@radix-ui/react-context-menu": "^2.1.5",
@@ -26,7 +25,6 @@
     "axios": "^1.6.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
-    "cors": "^2.8.5",
     "lucide-react": "^0.291.0",
     "next": "14.0.1",
     "react": "^18",
@@ -36,7 +34,6 @@
     "zustand": "^4.4.6"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.16",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

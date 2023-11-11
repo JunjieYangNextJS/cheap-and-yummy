@@ -4,12 +4,14 @@ import React from "react";
 import { TabsContent } from "../ui/tabs";
 import { Separator } from "../ui/separator";
 import BusinessCard from "./business-card";
+import { Loader2 } from "lucide-react";
 
 interface DollarSignProps {
   restaurants: Business[];
   pageTitle: string;
   pageDescription: string;
   pageSign: "$" | "$$";
+  isPending: boolean;
 }
 
 export default function DollarSign({
@@ -17,6 +19,7 @@ export default function DollarSign({
   pageTitle,
   pageDescription,
   pageSign,
+  isPending,
 }: DollarSignProps) {
   return (
     <TabsContent value={pageSign} className="border-none p-0 outline-none">
@@ -26,13 +29,22 @@ export default function DollarSign({
           <p className="text-sm text-muted-foreground">{pageDescription}</p>
         </div>
       </div>
-      <Separator className="my-4" />
+      <Separator />
       <div className="relative">
-        <div className="grid grid-cols-2">
-          {restaurants?.map((business: Business) => (
-            <BusinessCard key={business.id} business={business} />
-          ))}
-        </div>
+        {isPending ? (
+          <div className="flex flex-col flex-1 justify-center items-center">
+            <Loader2 className="h-7 w-7 text-zinc-500 animate-spin my-4" />
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
+              Loading...
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2">
+            {restaurants?.map((business: Business) => (
+              <BusinessCard key={business.id} business={business} />
+            ))}
+          </div>
+        )}
       </div>
     </TabsContent>
   );

@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { OneDollarSign } from "./one-dollar-sign";
-import { Separator } from "../ui/separator";
+
 import { TwoDollarSigns } from "./two-dollar-signs";
 
 export default function DollarTabs() {
@@ -14,12 +14,14 @@ export default function DollarTabs() {
       <Tabs defaultValue="$" className="h-full space-y-6">
         <div className="space-between flex items-center">
           <TabsList>
-            <TabsTrigger value="$" className="relative">
-              <div onClick={() => setPrice(1)}>$</div>
-            </TabsTrigger>
-            <TabsTrigger value="$$">
-              <div onClick={() => setPrice(2)}>$$</div>
-            </TabsTrigger>
+            <div onClick={() => setPrice(1)}>
+              <TabsTrigger value="$" className="relative">
+                $
+              </TabsTrigger>
+            </div>
+            <div onClick={() => setPrice(2)}>
+              <TabsTrigger value="$$">$$</TabsTrigger>
+            </div>
           </TabsList>
         </div>
         <OneDollarSign price={price} />

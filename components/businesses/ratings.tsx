@@ -6,8 +6,6 @@ import React from "react";
 export default function Ratings({ rating }: { rating: number }) {
   const divs = [];
 
-  //   console.log(rating, "rating");
-
   for (let i = 1; i <= rating; i++) {
     divs.push(
       <div
