@@ -13,7 +13,7 @@ import { Input } from "../ui/input";
 import { useMapStore } from "@/hooks/use-map-store";
 
 const GoogleMapComponent = () => {
-  const [selectedPlace, setSelectedPlace] = useState("Austin");
+  const [selectedPlace, setSelectedPlace] = useState("Central Austin");
   const [searchLngLat, setSearchLngLat] = useState({
     lat: 30.267153,
     lng: -97.743057,
@@ -22,7 +22,12 @@ const GoogleMapComponent = () => {
   const autocompleteRef = useRef(null);
   const [address, setAddress] = useState("");
 
+  console.log(selectedPlace, "selectedPlace here");
+
   const onChangeLocation = useMapStore((state) => state.onChangeLocation);
+  const onChangeLocationName = useMapStore(
+    (state) => state.onChangeLocationName
+  );
 
   // laod script for google map
   const { isLoaded } = useLoadScript({
@@ -38,7 +43,7 @@ const GoogleMapComponent = () => {
   // handle place change on search
   const handlePlaceChanged = () => {
     const place = autocompleteRef.current.getPlace();
-    setSelectedPlace(place);
+    setSelectedPlace(place.name);
     setSearchLngLat({
       lat: place.geometry.location.lat(),
       lng: place.geometry.location.lng(),
@@ -47,6 +52,7 @@ const GoogleMapComponent = () => {
       place.geometry.location.lat(),
       place.geometry.location.lng()
     );
+    onChangeLocationName(place.name);
     setCurrentLocation(null);
   };
 
@@ -56,9 +62,13 @@ const GoogleMapComponent = () => {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          setSelectedPlace(null);
-          setSearchLngLat(null);
+
+          setSelectedPlace("Your location");
+          setSearchLngLat({ lat: latitude, lng: longitude });
           setCurrentLocation({ lat: latitude, lng: longitude });
+
+          onChangeLocation(latitude, longitude);
+          onChangeLocationName("Your location");
         },
         (error) => {
           console.log(error);

@@ -1,6 +1,15 @@
 import { create } from 'zustand'
 
-const radiusInCM = {
+export function findKeyByValue(obj: Record<string, number>, value: number): string | null {
+  for (const key in obj) {
+    if (obj[key] === value) {
+      return key;
+    }
+  }
+  return null; // Return null if the value is not found
+}
+
+export const radiusInCM = {
   '5': 8047,
   '10': 16093,
   '15': 24140,

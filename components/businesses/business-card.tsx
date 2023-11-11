@@ -79,6 +79,7 @@ export default function BusinessCard({ business }: { business: Business }) {
             <div className="overflow-hidden h-[150px] w-[150px] relative  rounded-md">
               <Image
                 src={image_url}
+                sizes="inherit"
                 fill
                 // objectFit="cover"
                 style={{
